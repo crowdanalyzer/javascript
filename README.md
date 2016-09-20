@@ -17,7 +17,7 @@
 13. [Classes](#classes)
 14. [Objects](#objects)
 15. [Properties](#properties)
-16. [Comparison Operators](#comparison)
+16. [Comparison Operators](#comparison-operators)
 
 ## [Naming Conventions](#naming-conventions)
 
@@ -768,6 +768,245 @@ function find(id, options = {}) {
 
 // good
 [1, 2, 3].map(item => item * 3);
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Classes](#classes)
+
+13.1 Always **use** **class**. **Never** use **prototype**.
+```javascript
+// bad
+let Person = function() {}
+Person.prototype.name = function() {}
+
+// good
+class Person {
+    function name() {
+    }
+}
+```
+
+13.2 **Use** **extends** for inheritance.
+```javascript
+// bad
+let Person = function() {}
+Person.prototype = Object.create(Human.prototype);
+
+// good
+class Person extends Human {
+}
+```
+
+13.3 Methods can **return** **this** to help with **method** **chaining.**
+```javascript
+// bad
+class Person {
+    setName(name) {
+        this.name = name;
+    }
+
+    setHeight(height) {
+        this.height = height;
+    }
+}
+
+let person = new Person();
+person.setName('aName');
+person.setHeight(180);
+
+// good
+class Person {
+    setName(name) {
+        this.name = name;
+        return this;
+    }
+
+    setHeight(height) {
+        this.height = height;
+        return this;
+    }
+}
+
+let person = new Person();
+person.setName('aName').setHeight(180);
+```
+
+13.4 **Avoid** **empty** **constructor** functions. ([no-useless-constructor](http://eslint.org/docs/rules/no-useless-constructor))
+```javascript
+// bad
+class Person {
+    constructor() {}
+
+    setName(name) {
+        this.name = name;
+    }
+}
+
+// good
+class Person {
+    setName(name) {
+        this.name = name;
+    }
+}
+```
+
+13.5 **Avoid** **duplicate** class **methods.** ([no-dupe-class-members](http://eslint.org/docs/rules/no-dupe-class-members))
+```javascript
+// bad
+class Person {
+    setName() {}
+
+    setName() {}
+}
+
+// good
+class Person {
+  setName() {}
+}
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Objects](#objects)
+
+14.1 **Use** **object** **literals** for object creation. ([no-new-object](http://eslint.org/docs/rules/no-new-object))
+```javascript
+// bad
+let person = new Object();
+
+// good
+let person = {
+}
+```
+
+14.2 **Use** **computed** **property** **names** when creating objects with dynamic property names.
+```javascript
+// bad
+let fieldName = 'name';
+let Person = {
+    age: 14,
+}
+Person[fieldName] = 'aName';
+
+// good
+let Person = {
+    age: 14,
+    [fieldName]: 'aName',
+}
+```
+
+14.3 Use **object** **method** **shorthand** & **property** **value** **shorthand.** ([object-shorthand](http://eslint.org/docs/rules/object-shorthand))
+```javascript
+// bad
+let anotherField = 'field';
+let Person = {
+    anotherField: anotherField,
+    getAge: function() {
+        return 25;
+    },
+}
+
+// good
+let anotherField = 'field';
+let Person = {
+    anotherField,
+    getAge() {
+        return 25;
+    },
+}
+```
+
+14.4 **Never** **quote** **properties**’ names ([quote-props](http://eslint.org/docs/rules/quote-props))
+```javascript
+// bad
+let Person = {
+    'age': 25,
+    'name': 'aName',
+}
+
+// good
+let Person = {
+    age: 25,
+    name: 'aName',
+}
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Properties](#properties)
+
+15.1 Use **dot** **notation** when accessing properties. Use **bracket** notation [] **only** when accessing properties with a **variable.** ([dot-notation](http://eslint.org/docs/rules/dot-notation))
+```javascript
+// bad
+const age = Person['age'];
+
+// good
+const age = Person.age;
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Comparison Operators](#comparison-operators)
+
+16.1 **Use** **===** & **!==** over == & !=. ([eqeqeq](http://eslint.org/docs/rules/eqeqeq))
+```javascript
+// bad
+if(15 == age) {}
+if(16 != age) {}
+
+// good
+if(15 === age) {}
+if(16 !== age) {}
+```
+
+16.2 **Never** declare **variables** **inside** **switch / case.** ([no-case-declarations](http://eslint.org/docs/rules/no-case-declarations))
+```javascript
+// bad
+switch(age) {
+    case 25:
+      let name = 'aName';
+      break;
+    case 30:
+      let name = 'anotherName';
+      break;
+}
+
+// good
+let name;
+switch(age) {
+    case 25:
+      name = 'aName';
+      break;
+    case 30:
+      name = 'anotherName';
+      break;
+}
+```
+
+16.3 **Avoid** **nested** **ternaries** ([no-nested-ternary](http://eslint.org/docs/rules/no-nested-ternary))
+```javascript
+// bad
+const classification = author.type === 'entity'? 'virtual' : (author.gender === 'male'? 'human': 'non-human');
+
+// good
+const classification;
+if('entity' === author.type) {
+    classification = 'virtual';
+} else if('male' === author.gender) {
+    classification = 'human';
+} else {
+    classification = 'non-human';
+}
+```
+
+16.4 **Avoid** **unneeded** **ternary** statements ([no-unneeded-ternary](http://eslint.org/docs/rules/no-unneeded-ternary))
+```javascript
+// bad
+const isHuman = 'male' === gender? true : false;
+
+// good
+const isHuman = 'male' === gender;
 ```
 
 **[Back to Top](#table-of-contents)**
