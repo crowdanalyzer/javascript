@@ -342,3 +342,227 @@ _.chain(data).flatten().uniqu()
 ```
 
 **[Back to Top](#table-of-contents)**
+
+## [Blocks](#blocks)
+
+3.1 **Use** **braces** with **all** multi line **blocks.**
+```javascript
+// bad
+if(num > 3)
+    num++;
+
+// good
+if(num > 3) num++;
+if(num > 3) {
+    num++;
+}
+```
+
+3.2 In if-else statement, **Put** **else** on the **same line** as your **if** block’s **closing** **brace.** ([brace-style](http://eslint.org/docs/rules/brace-style))
+```javascript
+// bad
+if(num > 3) {
+    num++;
+}
+else {
+    num--;
+}
+
+// good
+if(num > 3) {
+    num++;
+} else {
+    num--;
+}
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Commas](#commas)
+
+4.1 **Avoid** using **leading** **commas.** ([comma-style](http://eslint.org/docs/rules/comma-style))
+```javascript
+// bad
+let numbers = [
+    1
+  , 2
+  , 3
+]
+
+// good
+let numbers = [
+    1,
+    2,
+    3,
+]
+
+// bad
+let name = {
+    first: 'First Name'
+  , last: 'Last Name'
+}
+
+// good
+let name = {
+    first: 'First Name',
+    last: 'Last Name',
+}
+```
+
+4.2 **Use** additional **trailing** **commas**. ([comma-dangle](http://eslint.org/docs/rules/comma-dangle))
+```javascript
+// bad
+let name = {
+    first: 'First Name',
+    last: 'Last Name'
+}
+
+// good
+let name = {
+    first: 'First Name',
+    last: 'Last Name',
+}
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Semicolons](#semicolons)
+
+5.1 **Always** end your statements with **semicolon.** ([semi](http://eslint.org/docs/rules/semi))
+```javascript
+// bad
+let name
+function find() {
+  return
+}
+
+// good
+let name;
+function find() {
+  return;
+}
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Comments](#comments)
+
+6.1 **Use** `/** */` for **multi-line comments.**
+```javascript
+// bad
+// this a multi
+// line comment
+
+// good
+/**
+ * this is a multi
+ * line comment
+ */
+```
+
+6.2 **Use** `//` for **single** line **comments**. **Place** single line **comments** on a **new** **line** **above** the **subject** of the comment. Put an **empty** **line** **before** the **comment** unless it is on the first line of the block.
+```javascript
+// bad
+function find(id) {
+    let id = ':' + id; // prefix id with colon ':'
+    // check on id type
+    if(typeof id == 'string') {
+        // ...
+    }
+}
+
+// good
+function find(id) {
+    // prefix id with colon ':'
+    let id = ':' + id;
+
+    // check on id type
+    if(typeof id == 'string') {
+        // ...
+    }
+}
+```
+
+6.3 **Use** **// FIXME:** to annotate **problems.**
+```javascript
+// FIXME: shouldn't use a global here
+total = 0;
+
+function sum() {
+   // ....
+}
+```
+
+6.4 **Use** **// TODO:** to annotate **solutions** to a problem.
+```javascript
+// TODO: define total inside sum function
+total = 0;
+
+function sum() {
+   // ....
+}
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Variables](#variables)
+
+7.1 **Avoid** polluting **global** **name** **space**. **Always** **use** **const** to declare variables. ([no-undef](http://eslint.org/docs/rules/no-undef), [prefer-const](http://eslint.org/docs/rules/prefer-const))
+```javascript
+// bad
+person = new Person();
+
+// good
+const person = new Person();
+```
+
+7.2 **Use** **one** **const** declaration **per** **variable.** ([one-var](http://eslint.org/docs/rules/one-var))
+```javascript
+// bad
+const a, b, c, d;
+
+// good
+const a;
+const b;
+const c;
+const d;
+```
+
+7.3 **Don’t** **chain** **variable** **assignments.**
+```javascript
+// bad
+let a = b = c = 1;
+
+// good;
+let c = 1;
+let a = c;
+let b = c;
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [References](#references)
+
+8.1 **Use** **const** for all of your references, **avoid** using **var**. ([prefer-const](http://eslint.org/docs/rules/prefer-const), [no-const-assign](http://eslint.org/docs/rules/no-const-assign))
+```javascript
+// bad
+var a = 0;
+var b = 1;
+
+// good
+const a = 0;
+const b = 0;
+```
+
+8.2 If you must reassign references, **use** **let** **instead** of **var**. ([no-var](http://eslint.org/docs/rules/no-var))
+```javascript
+// bad
+var a = 0;
+var b = 1;
+
+// good
+let a = 0;
+let b = 1;
+```
+
+**[Back to Top](#table-of-contents)**
