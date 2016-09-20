@@ -10,14 +10,14 @@
 6. [Comments](#comments)
 7. [Variables](#variables)
 8. [References](#references)
-9. [Type Casting](#casting)
+9. [Type Casting](#type-casting)
 10. [Strings](#strings)
 11. [Arrays](#arrays)
 12. [Functions](#functions)
 13. [Classes](#classes)
 14. [Objects](#objects)
 15. [Properties](#properties)
-16. [Comparison Operators ](#comparison)
+16. [Comparison Operators](#comparison)
 
 ## [Naming Conventions](#naming-conventions)
 
@@ -563,6 +563,211 @@ var b = 1;
 // good
 let a = 0;
 let b = 1;
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Type Casting](#type-casting)
+
+9.1 Perform type **coercion** at the **beginning** of the statement.
+```javascript
+// bad
+let message = 'hola!' + name.toString();
+
+// good
+let message = 'hola!' + String(name);
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Strings](#strings)
+
+10.1 **Use** **single** **quotes** for strings. ([quotes](http://eslint.org/docs/rules/quotes))
+```javascript
+// bad
+const name = "Crowd Analyzer";
+
+// good
+const name = 'Crowd Analyzer';
+```
+
+10.2 Use **string** **concatenation** when your string **go** **over** **100** characters.
+```javascript
+// bad
+let message = 'this is a very long message this is a very long message this is a very long message this is a very long message this is a very long message';
+
+// good
+let message = 'this is a very long message this is a very long message' +
+    'this is a very long message this is a very long message' +
+    'this is a very long message this is a very long message';
+```
+
+10.3 When **building** **up** **strings**, **use** **template** **strings** instead of concatenation. ([prefer-template](http://eslint.org/docs/rules/prefer-template), [template-curly-spacing](http://eslint.org/docs/rules/template-curly-spacing))
+```javascript
+// bad
+let message = 'Hola!' + name;
+
+// good
+let message = `Hola ${name}`;
+```
+
+10.4 **Don’t** unnecessary **escape** **characters** in strings. ([no-useless-escape](http://eslint.org/docs/rules/no-useless-escape))
+```javascript
+// bad
+let message = 'Hola \"Ahmed\"';
+
+// good
+let message = 'Hola "Ahmed"';
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Arrays](#arrays)
+
+11.1 **Use** **literal** **syntax** for **array** **creation.** ([no-array-constructor](http://eslint.org/docs/rules/no-array-constructor))
+```javascript
+// bad
+let elements = new Array();
+
+// good
+let elements = [];
+```
+
+**[Back to Top](#table-of-contents)**
+
+## [Functions](#functions)
+
+12.1 Use **function** **expressions** **instead** of **function** **declarations.** ([func-style](http://eslint.org/docs/rules/func-style))
+```javascript
+// bad
+function find() {
+    // ......
+}
+
+// good
+const find = function() {
+    // .....
+}
+```
+
+12.2 **Never** **declare** a **function** **inside** a non-function **block.** (e.g. if-while) ([no-loop-func](http://eslint.org/docs/rules/no-loop-func))
+```javascript
+// bad
+for(var i = 0; i < array.length; i++) {
+  let capitalize = function() {
+    // ....
+  }
+  capitalize(array[i]);
+}
+
+// good
+let capitalize = function() {
+  // ....
+}
+for(var i = 0; i < array.length; i++) {
+  capitalize(array[i]);
+}
+```
+
+12.3 **Never** **name** a parameter **arguments.**
+```javascript
+// bad
+function avg(number1, number2, arguments) {
+    // .....
+}
+
+// good
+function avg(number1, number2, otherNumbers) {
+    // ....
+}
+```
+
+12.4 Use **default** **parameter** **syntax** rather than mutating function arguments.
+```javascript
+// bad
+function find(options) {
+    options = options || {};
+}
+
+// bad
+function find(options) {
+    if(!_.isPlainObject(options)) {
+        options = {};
+    }
+}
+
+// good
+function find(options = {}) {
+    // .....
+}
+```
+
+12.5 **Always** **put** **default** parameters **last.**
+```javascript
+// bad
+function find(options = {}, id) {
+}
+
+// good
+function find(id, options = {}) {
+}
+```
+
+12.6 **Never** **use** **function** **constructor** to create new functions. ([no-new-func](http://eslint.org/docs/rules/no-new-func))
+```javascript
+    // bad
+    var find = new Function(id, options);
+```
+
+12.7 **Avoid** adding **space** between **function** **name** and **opening** **parenthesis.** ([space-before-function-paren](http://eslint.org/docs/rules/space-before-function-paren))
+```javascript
+// bad
+function find (id, options = {}) {
+}
+
+// good
+function find(id, options = {}) {
+}
+```
+
+12.8 When **passing** an **anonymous** **functions**, **use** **arrow** **functions.** ([prefer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback))
+```javascript
+// bad
+[1, 2, 3].filter(function() {
+});
+
+// good
+[1, 2, 3].filter(() => {
+});
+```
+
+12.9 Use a **space** **before** and **after** the **arrow** in **arrow** **functions.** ([arrow-spacing](http://eslint.org/docs/rules/arrow-spacing))
+```javascript
+// bad
+[1, 2, 3].map(x=>x + 1);
+
+// good
+[1, 2, 3].map(x => x + 1);
+```
+
+12.10 If the function body consists of a **single** **expression**, **omit** the **braces** and **use** the **implicit** **return.** ([arrow-body-style](http://eslint.org/docs/rules/arrow-body-style))
+```javascript
+// bad
+[1, 2, 3].map((item) => {
+    return item * 3;
+});
+
+// good
+[1, 2, 3].map(item => item * 3);
+```
+
+12.11 If the **function** takes a **single** **argument**, **omit** the **parentheses.** ([arrow-parens](http://eslint.org/docs/rules/arrow-parens))
+```javascript
+// bad
+[1, 2, 3].map((item) => item * 3);
+
+// good
+[1, 2, 3].map(item => item * 3);
 ```
 
 **[Back to Top](#table-of-contents)**
