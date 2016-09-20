@@ -1,9 +1,8 @@
 # Crowd Analyzer Javascript Style Guide
 
 # [Table of Contents](#table-of-contents)
----
 
-1. [Naming Conventions](#naming)
+1. [Naming Conventions](#naming-conventions)
 2. [Whitespace](#whitespace)
 3. [Blocks](#blocks)
 4. [Commas](#commas)
@@ -19,12 +18,10 @@
 14. [Objects](#objects)
 15. [Properties](#properties)
 16. [Comparison Operators ](#comparison)
----
 
-# [1.](#naming) Naming Conventions
----
+## [Naming Conventions](#naming-conventions)
 
-## 1.1 **Avoid single letter** names. Be descriptive with your naming.  ([id-length](http://eslint.org/docs/rules/id-length))
+1.1 **Avoid single letter** names. Be descriptive with your naming.  ([id-length](http://eslint.org/docs/rules/id-length))
 ```javascript
 // bad
 function t() {}
@@ -33,7 +30,7 @@ function t() {}
 function transform() {}
 ```
 
-## 1.2 Use **camelCase** when naming objects, functions, and instances. ([camelCase](http://eslint.org/docs/rules/camelcase))
+1.2 Use **camelCase** when naming objects, functions, and instances. ([camelCase](http://eslint.org/docs/rules/camelcase))
 ```javascript
 // bad
 function Transform() {}
@@ -46,7 +43,7 @@ let transformedVariable;
 let transformObject = new Transform();
 ```
 
-## 1.3 Use **PascalCase** when naming classes. ([new-cap](http://eslint.org/docs/rules/new-cap))
+1.3 Use **PascalCase** when naming classes. ([new-cap](http://eslint.org/docs/rules/new-cap))
 ```javascript
 // bad
 class whiteTransformer {}
@@ -56,7 +53,7 @@ class WHITE_TRANSFORMER {}
 class WhiteTransformer {}
 ```
 
-## 1.4 Use **CAPS_UNDERSCORE** when naming constants.
+1.4 Use **CAPS_UNDERSCORE** when naming constants.
 ```javascript
 // bad
 const maxNumberOfAllowedCharacters = 80;
@@ -65,7 +62,7 @@ const maxNumberOfAllowedCharacters = 80;
 const MAX_NUMBER_OF_ALLOWED_CHARACTERS = 80;
 ```
 
-## 1.5 Use a **leading _** to denote private methods.
+1.5 Use a **leading _** to denote private methods.
 ```javascript
 // bad
 class Transformer {
@@ -82,7 +79,7 @@ class Transformer {
 }
 ```
 
-## 1.6 **Avoid** saving references to **this**. Use arrow functions or Function#Bind instead.
+1.6 **Avoid** saving references to **this**. Use arrow functions or Function#Bind instead.
 ```javascript
 // bad
 function transform() {
@@ -100,7 +97,7 @@ function transform() {
 }
 ```
 
-## 1.7 A base **filename** should exactly match the name of its **default export**.
+1.7 A base **filename** should exactly match the name of its **default export**.
 Use **camelCase** when exporting a function. Use **PascalCase** when exporting class or bare object.
 ```javascript
 // bad
@@ -118,7 +115,7 @@ module.exports = {
 require('./BaseTransformer'); // PascalCase filename matches a PascalCase exported class
 ```
 
-## 1.8 Use PascalCaps with folders’ names.
+1.8 Use PascalCaps with folders’ names.
 ```javascript
 // bad
 require('./transformers/BaseTransformer'); // camelCase folders' names
