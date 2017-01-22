@@ -1007,6 +1007,20 @@ const isHuman = 'male' === gender? true : false;
 
 // good
 const isHuman = 'male' === gender;
+
+16.5 put each condition on a new line
+```javascript
+// bad
+if(!_.isPlainObject(deps) || _.isNil(deps.decoratorFactory)
+|| !_.isString(deps.search_query_field) || !_.isArray(deps.default_indices)) { ... }
+
+// good
+if(
+    !_.isPlainObject(deps) ||
+    _.isNil(deps.decoratorFactory) ||
+    !_.isString(deps.search_query_field) ||
+    !_.isArray(deps.default_indices)
+) { ... }
 ```
 
 **[Back to Top](#table-of-contents)**
