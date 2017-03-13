@@ -1007,8 +1007,9 @@ const isHuman = 'male' === gender? true : false;
 
 // good
 const isHuman = 'male' === gender;
+```
 
-16.5 put each condition on a new line
+16.5 Put **each condition** on a **new line**
 ```javascript
 // bad
 if(!_.isPlainObject(deps) || _.isNil(deps.decoratorFactory)
