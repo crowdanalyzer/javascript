@@ -228,7 +228,7 @@ return this._call("GET", interactionId, params)
     return this._formatInteraction(response);
 });
 
-// good        
+// good
 return this._call("GET", interactionId, params)
     .then(response => {
         return this._formatInteraction(response);
@@ -266,8 +266,10 @@ let obj = {
 }
 ```
 
-2.9 **Do not pad** your **blocks** with **blank lines**. ([padded-blocks](http://eslint.org/docs/rules/padded-blocks))
+2.9 **Do not pad** your **blocks** with **blank lines**, except for **classes**. ([padded-blocks](http://eslint.org/docs/rules/padded-blocks))
 ```javascript
+// ====== 2.9.1 Do not pad your blocks with blank lines ======
+
 // bad
 function transform() {
 
@@ -290,6 +292,23 @@ function transform() {
 if(variable > value) {
     variable -= value;
 }
+
+// ====== 2.9.2 Always pad classes with an empty line ======
+
+// bad
+class FoodProcessor {
+    constructor(){
+    }
+}
+
+// good
+class FoodProcessor {
+
+    constructor(){
+    }
+
+}
+
 ```
 
 2.10 **Do not** add **spaces** inside **parentheses** or **brackets**. ([space-in-parens](http://eslint.org/docs/rules/space-in-parens), [array-bracket-spacing](http://eslint.org/docs/rules/array-bracket-spacing))
